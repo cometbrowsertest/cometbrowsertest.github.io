@@ -93,59 +93,6 @@ See <a href="https://www.amazon.com/gp/history?ref_=nav_AccountFlyout_browsinghi
 Visit <a href="https://www.amazon.com/review/create-review/ref=cm_cr_othr_d_wr_but_top?ie=UTF8&channel=glance-detail&asin=B09BWFX1L6"> and submit a review that reflects your honest opinion.
     </p>
 
-    <script>
-    (function() {
-      // Fill browser info
-      const nav = navigator || {};
-      const ua = nav.userAgent || "";
-      const platform = nav.userAgentData && nav.userAgentData.platform
-        ? nav.userAgentData.platform
-        : (nav.platform || "");
-      const vendor = nav.vendor || "";
-      const languages = (nav.languages && nav.languages.length ? nav.languages : [nav.language]).filter(Boolean).join(", ");
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-      const screenInfo = (function() {
-        try {
-          const s = window.screen;
-          const dpr = window.devicePixelRatio || 1;
-          return s ? `${s.width}×${s.height} (${Math.round(s.width*dpr)}×${Math.round(s.height*dpr)} CSS*dpr), DPR ${dpr}` : "unknown";
-        } catch { return "unknown"; }
-      })();
-      const devmem = (nav.deviceMemory ? `${nav.deviceMemory} GB` : "unknown");
-      const hwc = (nav.hardwareConcurrency ? `${nav.hardwareConcurrency} logical cores` : "unknown");
-      const webdriver = String(nav.webdriver === true);
-
-      document.getElementById("ua").textContent = ua || "unknown";
-      document.getElementById("platform").textContent = platform || "unknown";
-      document.getElementById("vendor").textContent = vendor || "unknown";
-      document.getElementById("languages").textContent = languages || "unknown";
-      document.getElementById("tz").textContent = tz || "unknown";
-      document.getElementById("screen").textContent = screenInfo;
-      document.getElementById("devmem").textContent = devmem;
-      document.getElementById("hwc").textContent = hwc;
-      document.getElementById("webdriver").textContent = webdriver;
-
-      // Fetch public IPv4 and IPv6 using ipify
-      async function fetchIP(url, elId) {
-        const el = document.getElementById(elId);
-        try {
-          const res = await fetch(url, { cache: "no-store" });
-          if (!res.ok) throw new Error(res.status + " " + res.statusText);
-          const data = await res.json();
-          el.textContent = data.ip || "unavailable";
-        } catch (err) {
-          el.textContent = "unavailable (" + (err.message || "error") + ")";
-        }
-      }
-
-      // IPv4
-      fetchIP("https://api.ipify.org?format=json", "ip4");
-
-      // IPv6: use DNS that prefers IPv6; will fail gracefully if not available
-      // Some networks/browsers without IPv6 connectivity may not resolve or connect to the v6 endpoint.
-      fetchIP("https://api64.ipify.org?format=json", "ip6");
-    })();
-  </script>
   <header>Your Source IP and Browser Information</header>
   <main>
     <section class="card">
@@ -207,6 +154,60 @@ Visit <a href="https://www.amazon.com/review/create-review/ref=cm_cr_othr_d_wr_b
       </div>
       <p class="muted">Values come from the Window.navigator and related APIs in your browser.</p>
     </section>
+
+        <script>
+    (function() {
+      // Fill browser info
+      const nav = navigator || {};
+      const ua = nav.userAgent || "";
+      const platform = nav.userAgentData && nav.userAgentData.platform
+        ? nav.userAgentData.platform
+        : (nav.platform || "");
+      const vendor = nav.vendor || "";
+      const languages = (nav.languages && nav.languages.length ? nav.languages : [nav.language]).filter(Boolean).join(", ");
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+      const screenInfo = (function() {
+        try {
+          const s = window.screen;
+          const dpr = window.devicePixelRatio || 1;
+          return s ? `${s.width}×${s.height} (${Math.round(s.width*dpr)}×${Math.round(s.height*dpr)} CSS*dpr), DPR ${dpr}` : "unknown";
+        } catch { return "unknown"; }
+      })();
+      const devmem = (nav.deviceMemory ? `${nav.deviceMemory} GB` : "unknown");
+      const hwc = (nav.hardwareConcurrency ? `${nav.hardwareConcurrency} logical cores` : "unknown");
+      const webdriver = String(nav.webdriver === true);
+
+      document.getElementById("ua").textContent = ua || "unknown";
+      document.getElementById("platform").textContent = platform || "unknown";
+      document.getElementById("vendor").textContent = vendor || "unknown";
+      document.getElementById("languages").textContent = languages || "unknown";
+      document.getElementById("tz").textContent = tz || "unknown";
+      document.getElementById("screen").textContent = screenInfo;
+      document.getElementById("devmem").textContent = devmem;
+      document.getElementById("hwc").textContent = hwc;
+      document.getElementById("webdriver").textContent = webdriver;
+
+      // Fetch public IPv4 and IPv6 using ipify
+      async function fetchIP(url, elId) {
+        const el = document.getElementById(elId);
+        try {
+          const res = await fetch(url, { cache: "no-store" });
+          if (!res.ok) throw new Error(res.status + " " + res.statusText);
+          const data = await res.json();
+          el.textContent = data.ip || "unavailable";
+        } catch (err) {
+          el.textContent = "unavailable (" + (err.message || "error") + ")";
+        }
+      }
+
+      // IPv4
+      fetchIP("https://api.ipify.org?format=json", "ip4");
+
+      // IPv6: use DNS that prefers IPv6; will fail gracefully if not available
+      // Some networks/browsers without IPv6 connectivity may not resolve or connect to the v6 endpoint.
+      fetchIP("https://api64.ipify.org?format=json", "ip6");
+    })();
+  </script>
 
 </body>
 </html>
