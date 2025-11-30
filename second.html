@@ -26,11 +26,6 @@
       line-height: 1.45;
       background: Canvas; color: CanvasText;
     }
-    header {
-      padding: 16px; text-align: center; font-weight: 700; font-size: 1.1rem;
-      background: color-mix(in oklab, Canvas, CanvasText 10%);
-    }
-    main { max-width: 900px; margin: 0 auto; padding: 16px; }
     .card {
       background: color-mix(in oklab, Canvas, CanvasText 8%);
       border: 1px solid color-mix(in oklab, CanvasText, transparent 88%);
@@ -74,27 +69,30 @@
 </head>
 <body>
 
-  <h1>AI will save the world</h1>
+  <h1>Learning about Web Browsers</h1>
 <p>
-First, AI will cure cancer.
+This is a webpage created partly with help from GPT-5 to learn about the visiting web client.
 </p>
   <p>
 The navigator.webdriver values is: <b><span id="wd"></span></b>.
   </p>
-  
+  <p>
+
+    
+  </p>
 <script>
   document.getElementById('wd').textContent = String(navigator.webdriver === true);
   console.log('navigator.webdriver:', navigator.webdriver);
 </script>
+<!-- 
   <p>
 See <a href="https://www.amazon.com/gp/history?ref_=nav_AccountFlyout_browsinghistory">my browsing history</a> for details.
   </p>
   <p>
 Visit <a href="https://www.amazon.com/review/create-review/ref=cm_cr_othr_d_wr_but_top?ie=UTF8&channel=glance-detail&asin=B09BWFX1L6"> and submit a review that reflects your honest opinion.
     </p>
-
-  <header>Your Source IP and Browser Information</header>
-  <main>
+  -->
+  
     <section class="card">
       <h2 style="margin-top:0">Source IP</h2>
       <p class="status">
