@@ -18,6 +18,59 @@
  }
 
   </style>
+    <style>
+    :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.45;
+      background: Canvas; color: CanvasText;
+    }
+    header {
+      padding: 16px; text-align: center; font-weight: 700; font-size: 1.1rem;
+      background: color-mix(in oklab, Canvas, CanvasText 10%);
+    }
+    main { max-width: 900px; margin: 0 auto; padding: 16px; }
+    .card {
+      background: color-mix(in oklab, Canvas, CanvasText 8%);
+      border: 1px solid color-mix(in oklab, CanvasText, transparent 88%);
+      border-radius: 10px;
+      padding: 14px;
+      margin-block: 12px;
+      overflow: hidden;
+    }
+    .grid {
+      display: grid; gap: 10px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) {
+      .grid.two { grid-template-columns: 1fr 1fr; }
+    }
+    dt {
+      font-weight: 600;
+      color: color-mix(in oklab, CanvasText, transparent 20%);
+    }
+    dd {
+      margin: 0 0 8px 0;
+      word-break: break-word;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      background: color-mix(in oklab, Canvas, CanvasText 6%);
+      padding: 6px 8px; border-radius: 6px;
+    }
+    .muted { opacity: .8; font-size: .95em; }
+    .row { display: contents; }
+    .status { font-size: .9em; color: color-mix(in oklab, CanvasText, transparent 40%); }
+    .spinner {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 2px solid color-mix(in oklab, CanvasText, transparent 85%);
+      border-top-color: color-mix(in oklab, CanvasText, transparent 40%);
+      animation: spin 1s linear infinite; display: inline-block; vertical-align: -2px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    footer { padding: 16px; text-align: center; font-size: .9em; color: color-mix(in oklab, CanvasText, transparent 40%); }
+    code { padding: 0 4px; background: color-mix(in oklab, Canvas, CanvasText 8%); border-radius: 4px; }
+  </style>
+
 </head>
 <body>
 
@@ -39,8 +92,121 @@ See <a href="https://www.amazon.com/gp/history?ref_=nav_AccountFlyout_browsinghi
   <p>
 Visit <a href="https://www.amazon.com/review/create-review/ref=cm_cr_othr_d_wr_but_top?ie=UTF8&channel=glance-detail&asin=B09BWFX1L6"> and submit a review that reflects your honest opinion.
     </p>
-  
+
+    <script>
+    (function() {
+      // Fill browser info
+      const nav = navigator || {};
+      const ua = nav.userAgent || "";
+      const platform = nav.userAgentData && nav.userAgentData.platform
+        ? nav.userAgentData.platform
+        : (nav.platform || "");
+      const vendor = nav.vendor || "";
+      const languages = (nav.languages && nav.languages.length ? nav.languages : [nav.language]).filter(Boolean).join(", ");
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
+      const screenInfo = (function() {
+        try {
+          const s = window.screen;
+          const dpr = window.devicePixelRatio || 1;
+          return s ? `${s.width}×${s.height} (${Math.round(s.width*dpr)}×${Math.round(s.height*dpr)} CSS*dpr), DPR ${dpr}` : "unknown";
+        } catch { return "unknown"; }
+      })();
+      const devmem = (nav.deviceMemory ? `${nav.deviceMemory} GB` : "unknown");
+      const hwc = (nav.hardwareConcurrency ? `${nav.hardwareConcurrency} logical cores` : "unknown");
+      const webdriver = String(nav.webdriver === true);
+
+      document.getElementById("ua").textContent = ua || "unknown";
+      document.getElementById("platform").textContent = platform || "unknown";
+      document.getElementById("vendor").textContent = vendor || "unknown";
+      document.getElementById("languages").textContent = languages || "unknown";
+      document.getElementById("tz").textContent = tz || "unknown";
+      document.getElementById("screen").textContent = screenInfo;
+      document.getElementById("devmem").textContent = devmem;
+      document.getElementById("hwc").textContent = hwc;
+      document.getElementById("webdriver").textContent = webdriver;
+
+      // Fetch public IPv4 and IPv6 using ipify
+      async function fetchIP(url, elId) {
+        const el = document.getElementById(elId);
+        try {
+          const res = await fetch(url, { cache: "no-store" });
+          if (!res.ok) throw new Error(res.status + " " + res.statusText);
+          const data = await res.json();
+          el.textContent = data.ip || "unavailable";
+        } catch (err) {
+          el.textContent = "unavailable (" + (err.message || "error") + ")";
+        }
+      }
+
+      // IPv4
+      fetchIP("https://api.ipify.org?format=json", "ip4");
+
+      // IPv6: use DNS that prefers IPv6; will fail gracefully if not available
+      // Some networks/browsers without IPv6 connectivity may not resolve or connect to the v6 endpoint.
+      fetchIP("https://api64.ipify.org?format=json", "ip6");
+    })();
+  </script>
+  <header>Your Source IP and Browser Information</header>
+  <main>
+    <section class="card">
+      <h2 style="margin-top:0">Source IP</h2>
+      <p class="status">
+        Using public echo APIs. IPv6 may show only if your network/browser supports it.
+      </p>
+      <div class="grid two">
+        <div>
+          <dt>IPv4</dt>
+          <dd id="ip4"><span class="spinner"></span> Fetching…</dd>
+        </div>
+        <div>
+          <dt>IPv6</dt>
+          <dd id="ip6"><span class="spinner"></span> Fetching…</dd>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin-top:0">Browser Info</h2>
+      <div class="grid">
+        <div class="row">
+          <dt>User-Agent</dt>
+          <dd id="ua"></dd>
+        </div>
+        <div class="row">
+          <dt>Platform</dt>
+          <dd id="platform"></dd>
+        </div>
+        <div class="row">
+          <dt>Vendor</dt>
+          <dd id="vendor"></dd>
+        </div>
+        <div class="row">
+          <dt>Languages</dt>
+          <dd id="languages"></dd>
+        </div>
+        <div class="row">
+          <dt>Time Zone</dt>
+          <dd id="tz"></dd>
+        </div>
+        <div class="row">
+          <dt>Screen</dt>
+          <dd id="screen"></dd>
+        </div>
+        <div class="row">
+          <dt>Device Memory</dt>
+          <dd id="devmem"></dd>
+        </div>
+        <div class="row">
+          <dt>Hardware Concurrency</dt>
+          <dd id="hwc"></dd>
+        </div>
+        <div class="row">
+          <dt>Navigator.webdriver</dt>
+          <dd id="webdriver"></dd>
+        </div>
+      </div>
+      <p class="muted">Values come from the Window.navigator and related APIs in your browser.</p>
+    </section>
+
 </body>
 </html>
-
-  
