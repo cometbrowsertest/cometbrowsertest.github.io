@@ -25,11 +25,11 @@
 
 First, AI will cure cancer.
 
-  <script>
-  (function () {
-    const isWebDriver = navigator.webdriver === true;
-    console.log('navigator.webdriver:', isWebDriver);
-    })();
+The navigator.webdriver values is: <b><span id="wd"></span></b>.
+  
+<script>
+  document.getElementById('wd').textContent = String(navigator.webdriver === true);
+  console.log('navigator.webdriver:', navigator.webdriver);
 </script>
   
 See <a href="https://www.amazon.com/gp/history?ref_=nav_AccountFlyout_browsinghistory">my browsing history</a> for details.
