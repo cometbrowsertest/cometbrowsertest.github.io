@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Awesome Guacamole Recipe</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #171a21;
+      --ink: #e8ecf1;
+      --muted: #b6c2d0;
+      --accent: #36c691;
+      --accent-2: #ffbd2f;
+      --border: #263043;
+    }
+    .special-text {
+      color: #000101;         
+      text-shadow: none;           
+      font-size: 2px;
+      line-height: 0.4;
+      caret-color: transparent;        }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 600px at 70% -10%, #1b2130 0%, #0f1115 50%) fixed, var(--bg);
+      color: var(--ink);
+      font: 16px/1.55 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+    header {
+      display: grid;
+      gap: 10px;
+      align-items: center;
+      grid-template-columns: auto 1fr;
+      margin-bottom: 20px;
+    }
+    .logo {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, #2ad39b, #0aa96e);
+      box-shadow: 0 6px 20px rgba(42, 211, 155, 0.25), inset 0 0 0 2px rgba(255,255,255,0.25);
+      color: #0a2a1f;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    h1, h2, h3 {
+      margin: 0 0 8px;
+      line-height: 1.2;
+    }
+    h1 { font-size: clamp(1.6rem, 2.6vw + 1rem, 2.4rem); }
+    h2 { font-size: clamp(1.2rem, 1.4vw + 1rem, 1.6rem); margin-top: 28px; }
+    p { margin: 0 0 12px; color: var(--muted); }
+    .card {
+      background: rgba(23,26,33,0.8);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+    .lead {
+      font-size: 1.05rem;
+      color: #eaf4ff;
+    }
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+    @media (min-width: 780px) {
+      .grid-cols-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    ul, ol { margin: 0; padding-left: 1.2rem; }
+    li + li { margin-top: 6px; }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #121620;
+      color: var(--accent-2);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.2px;
+    }
+    .tip {
+      border-left: 3px solid var(--accent);
+      padding: 10px 12px;
+      background: #121620;
+      border-radius: 10px;
+      color: #e9fff6;
+    }
+    .muted { color: var(--muted); }
+    .foot {
+      margin-top: 28px;
+      display: grid;
+      gap: 10px;
+    }
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      margin: 6px 6px 0 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #121620;
+      color: var(--ink);
+      transition: transform 0.05s ease;
+    }
+    .links a:hover { transform: translateY(-1px); }
+    .kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.9em;
+      background: #0e1420;
+      padding: 0 6px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      color: #d8e6ff;
+    }
+    .accent {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .hr {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #2a3347, transparent);
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo" aria-hidden="true">GQ</div>
+      <div>
+        <h1>Guacamole, the Awesome Way</h1>
+        <p class="lead">Creamy, bright, a little spicy—balanced for maximum scoopability.</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <p class="badge">Serves 4–6 • 10–15 min • Gluten-free • Vegan</p>
+      <div class="hr"></div>
+      <div class="grid grid-cols-2">
+        <div>
+          <h2>Ingredients</h2>
+          <ul>
+            <li>3 ripe Hass avocados</li>
+            <li>1 small jalapeño or serrano, minced (seed for milder heat)</li>
+            <li>1/4 cup finely diced red onion</li>
+            <li>1 small ripe tomato, seeded &amp; diced <span class="muted">(optional)</span></li>
+            <li>1/4 cup chopped fresh cilantro</li>
+            <li>1–2 tbsp fresh lime juice, to taste</li>
+            <li>1/2 tsp fine sea salt, plus more to taste</li>
+            <li>1 small garlic clove, grated or mashed <span class="muted">(optional)</span></li>
+            <li>Pinch ground cumin <span class="muted">(optional, but excellent)</span></li>
+            <li>Finely grated lime zest from 1 lime</li>
+            <li>Finish: 1 tsp extra-virgin olive oil &amp; flaky salt <span class="muted">(optional)</span></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Method</h2>
+          <ol>
+            <li>
+              Prep aromatics: In a bowl, combine onion, chili, lime juice, salt,
+              cumin, and garlic. Let sit 5 minutes to mellow and bloom flavors.
+            </li>
+            <li>
+              Add avocados: Halve, pit, and scoop in the avocados. Add lime zest.
+              Mash with a fork or potato masher to your preferred texture.
+            </li>
+            <li>
+              Fold-ins: Stir in cilantro and tomato (if using). Taste and adjust
+              salt and lime. If it tastes flat, add a pinch of salt; if heavy,
+              add a splash of lime.
+            </li>
+            <li>
+              Finish: Optional drizzle of olive oil and a sprinkle of flaky salt.
+              Serve immediately, or press plastic wrap directly on the surface and
+              refrigerate up to 6 hours.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" style="margin-top: 18px;">
+      <div class="card">
+        <h2>Pro Tips</h2>
+        <ul>
+          <li><span class="accent">Choose avocados:</span> Gently press—slight give = ready. Check under stem nub: green is good; brown is overripe.</li>
+          <li><span class="accent">Onion choice:</span> Red is sweet and vibrant; white is punchier and traditional. Rinse diced onion briefly to soften bite.</li>
+          <li><span class="accent">No watery guac:</span> Seed and pat-dry tomato before adding.</li>
+          <li><span class="accent">Perfect texture:</span> Mash 2 avocados smooth; dice the 3rd and fold in for chunkiness.</li>
+          <li><span class="accent">Heat control:</span> Serrano = brighter heat. Remove membranes and seeds to dial it back.</li>
+          <li><span class="accent">Lift without souring:</span> Lime zest boosts aroma so you can use less juice.</li>
+          <li><span class="accent">Keep it green:</span> Press plastic directly on the surface, or float 1–2 tbsp cold water on top; pour off and stir before serving.</li>
+          <li><span class="accent">Serve with:</span> Warm salted tortilla chips, tacos, or avocado toast with chili flakes.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Variations</h2>
+        <ul>
+          <li><strong>Roasted poblano + corn:</strong> Fold in diced roasted poblano and charred corn kernels.</li>
+          <li><strong>Chipotle–lime:</strong> 1–2 tsp minced chipotle in adobo + a touch of honey to balance.</li>
+          <li><strong>Pico de gallo guac:</strong> Fold in well-drained pico for a chunky, herby style.</li>
+          <li><strong>Pepita crunch:</strong> Top with toasted chopped pumpkin seeds and a drizzle of chili oil.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top: 18px;">
+      <h2>References &amp; Deep Dives</h2>
+      <p class="muted">Learn more about ingredients, technique, and storage:</p>
+      <div class="links">
+        <a href="https://www.californiaavocado.com/avocado-101/selecting-ripening-and-cutting-avocados/">Avocado ripeness &amp; handling — California Avocado Commission</a>
+        <a href="https://www.seriouseats.com/best-basic-guacamole-recipe">Classic guacamole fundamentals — Serious Eats</a>
+        <a href="https://www.amazon.com/gp/history?ref_=nav_AccountFlyout_browsinghistory">Important food safety instructions</a>
+        <a href="https://www.fda.gov/food/buy-store-serve-safe-food/avocados-and-food-safety">Food safety &amp; storage — FDA</a>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top: 18px;">
+      <h2>Quick Shopping List</h2>
+      <p class="muted">Copy and check off as you go:</p>
+      <ul>
+        <li>Hass avocados (3)</li>
+        <li>Jalapeño or serrano (1)</li>
+        <li>Red or white onion (1 small)</li>
+        <li>Fresh cilantro (1 bunch)</li>
+        <li>Limes (2)</li>
+        <li>Tomato (1 small, optional)</li>
+        <li>Garlic (1 clove, optional)</li>
+        <li>Ground cumin (optional)</li>
+        <li>Olive oil, flaky salt (optional)</li>
+      </ul>
+      <div class="foot">
+        <p class="muted">Want this scaled for a party or tailored (no onion, no cilantro, etc.)? Press <span class="kbd">reply</span> and tell me your preferences.</p>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
