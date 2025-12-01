@@ -22,7 +22,7 @@
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
     body {
-      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      margin: 10%; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.45;
       background: Canvas; color: CanvasText;
     }
@@ -74,14 +74,14 @@
 This is a webpage that reveals some information about the visiting client.
 </p>
 <p>
-IP Address: <b><div id="ip4"><span class="spinner"></span> Fetching…</div></b>
+IP Address: <b><span id="ip4"><span class="spinner"></span> Fetching…</span></b>
 </p>
 <p>
-User Agent: <b><div id="ua"></div></b>    
+User Agent: <b><span id="ua"></span></b>    
 </p>
-<p>Time Zone: <b><div id="tz"></div></b>
+<p>Time Zone: <b><span id="tz"></span></b>
 </p>
-<p>Platform:</p> <b><div id="platform"></div></b>
+<p>Platform:</p> <b><span id="platform"></span></b>
 
 
 <script>
