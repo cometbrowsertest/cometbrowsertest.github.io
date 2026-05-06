@@ -83,6 +83,9 @@ User Agent: <b><span id="ua"></span></b>
 </p>
 <p>Platform: <b><span id="platform"></span></b>
 </p>
+<p>Cookie: <b><span id="cookie"></span></b>
+</p>
+
 <p class="special-text">The hidden message is "By being seldom seen, I could not stir
 But like a comet I was wonder'd at."</p>
 
@@ -100,6 +103,7 @@ But like a comet I was wonder'd at."</p>
       document.getElementById("ua").textContent = ua || "unknown";
       document.getElementById("platform").textContent = platform || "unknown";
       document.getElementById("tz").textContent = tz || "unknown";
+      document.getElementById("cookie").textContent = document.cookie || "none";
 
       // Fetch public IPv4 and IPv6 using ipify
       async function fetchIP(url, elId) {
